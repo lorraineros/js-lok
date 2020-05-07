@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="nouislider.css">
+    <script src="nouislider.js"></script>
+    <script src="moment-with-locales.js"></script>
+    <script src="main.js"></script>
+</head>
+<body>
+    <h1 class="title">&#9733; Viðburðir &#9733;</h1>
+    <h2>Leita</h2>
+    <input type="text" id="search" onkeyup="Events()" placeholder="leita"><br>
+
+    <h2>Dagsetning</h2>
+    Frá	<input type="date" id="startdate" min="2020-01-01" onchange="Events();" value="2020-01-01"> 
+    Til <input type="date" id="enddate" min="2020-01-01" onchange="Events();" value="2020-12-31"><br><br>
+
+    <div id=container>
+        <div id=slider></div>
+      </div>
+      <div id="leftvalue">
+      
+      </div>
+      <div id="rightvalue">
+      
+      </div>
+
+    
+    <div id="slider"></div><br>
+
+    <div id="list" class="list"></div>
+
+    <footer>&#9733; Lorraine Rós Tumarao &#9733;</footer>
+
+    <script>
+
+    var slider = document.getElementById("slider"),
+		leftValue = document.getElementById('leftvalue'),
+    rightValue = document.getElementById('rightvalue');
+
+    // 0 = initial minutes from start of day
+    // 1440 = maximum minutes in a day
+    // step: 30 = amount of minutes to step by. 
+    var initialStartMinute = 0,
+        initialEndMinute = 1440,
+        step = 30;
+        
+    slider = noUiSlider.create(slider,{
+      start:[initialStartMinute,initialEndMinute],
+      connect:true,
+      step:step,
+      range:{
+        'min':initialStartMinute,
+        'max':initialEndMinute
+      }
+    });
+
+    var convertValuesToTime = function(values,handle){
+      var hours = 0,
+          minutes = 0;
+          
+      if(handle === 0){
+        hours = convertToHour(values[0]);
+        minutes = convertToMinute(values[0],hours);
+        leftValue.innerHTML = formatHoursAndMinutes(hours,minutes);
+        return;
+      };
+      
+      hours = convertToHour(values[1]);
+      minutes = convertToMinute(values[1],hours);
+      rightValue.innerHTML = formatHoursAndMinutes(hours,minutes);
+        
+    };
+
+    var convertToHour = function(value){
+      return Math.floor(value / 60);
+    };
+    var convertToMinute = function(value,hour){
+      return value - hour * 60;
+    };
+    var formatHoursAndMinutes = function(hours,minutes){
+        if(hours.toString().length == 1) hours = '0' + hours;
+        if(minutes.toString().length == 1) minutes = '0' + minutes;
+        return hours+':'+minutes;
+    };
+
+    slider.on('update',function(values,handle){
+      convertValuesToTime(values,handle);
+});
+    </script>
+</body>
+</html>

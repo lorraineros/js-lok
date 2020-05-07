@@ -1,0 +1,69 @@
+body{
+    text-align: center;
+    max-width: 80em;
+    margin: auto;
+    background: lightskyblue;
+}
+.hidden{ display: none; }
+
+input[type=text], select {
+    text-align: center;
+    width: 50%;
+    padding: 10px;
+    margin: 2px;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+  }
+  input[type=date], select {
+    text-align: center;
+    width: 24%;
+    padding: 12px;
+    margin: 8px;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+  }
+#slider{
+    width: 50%;
+    align-items: center;
+    margin: auto;
+}
+.event img{
+    height: auto;
+    width: 300px;
+    grid-area: image;
+}
+.event{
+    border: 5px solid pink;
+    background: plum;
+    border-radius: 4px;
+    margin-bottom: 5em;
+}
+
+.event h2 { 
+    font-size: large;
+}
+.main{
+    padding: 2em;
+}
+
+.list{
+    max-width: 60em;
+    margin: auto;
+}
+
+.title{
+    font-size: 60px;
+    color: darkblue;
+    margin-bottom: 0.1em;
+}
+
+footer{
+    color: rebeccapurple;
+    padding: 10px;
+    margin-bottom: 2em;
+    font-size: 25px;
+}
